@@ -8,7 +8,7 @@ import { createWeb3Modal, defaultConfig } from "@web3modal/ethers/react";
 import { useNavigate } from "react-router-dom";
 
 
-const commerceContractAddress = "0xFfB4cab6E0aFC6D0aE99293a863D4a36d7152C7D";
+const commerceContractAddress = "0xF0c9C0fF44F2E5Cfd9259De2EDc49823e84555BD";
 const commerceABI = [
   {
     inputs: [
@@ -338,15 +338,15 @@ const sepolia = {
     "https://eth-sepolia.g.alchemy.com/v2/_O9yEvZei4_BPgQbLawL754cAfubB8jr", // Replace with your Infura project ID
 };
 
-
-const polygonPos = {
-  chainId: 137,
-  name: "Polygon (PoS)",
-  currency: "MATIC",
-  explorerUrl: "https://polygonscan.com",
+const basesepolia = {
+  chainId: 84532,
+  name: "BaseSepolia",
+  currency: "ETH",
+  explorerUrl: "https://base-sepolia.blockscout.com/",
   rpcUrl:
-    "https://polygon-mainnet.g.alchemy.com/v2/_O9yEvZei4_BPgQbLawL754cAfubB8jr", // You can replace this with an Alchemy, Infura, or another custom RPC URL
+    "https://base-sepolia.g.alchemy.com/v2/_O9yEvZei4_BPgQbLawL754cAfubB8jr", // Replace with your Infura project ID
 };
+
 
 // 3. Create a metadata object
 const metadata = {
@@ -377,14 +377,14 @@ const ethersConfig = defaultConfig({
 // 5. Create a AppKit instance
 createWeb3Modal({
   ethersConfig,
-  chains: [mainnet, sepolia, polygonPos],
+  chains: [mainnet, sepolia, basesepolia],
   projectId,
   enableAnalytics: true, // Optional - defaults to your Cloud configuration
 });
 
-const WETHAddress = "0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619";
-const USDTAddress = "0xc2132D05D31c914a87C6611C10748AEb04B58e8F";
-const DAIAddress = "0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063";
+
+const USDTAddress = "0x323e78f944A9a1FcF3a10efcC5319DBb0bB6e673";
+const DAIAddress = "0xE6F6e27c0BF1a4841E3F09d03D7D31Da8eAd0a27";
 
 
 
@@ -428,11 +428,11 @@ const ListProducts = () => {
     console.log("hey");
     try {
       let priceInWei;
-      if (formData.currency === "0xc2132D05D31c914a87C6611C10748AEb04B58e8F") {
+      if (formData.currency === "0x323e78f944A9a1FcF3a10efcC5319DBb0bB6e673") {
         // USDT has 6 decimals
         priceInWei = ethers.parseUnits(formData.price.toString(), 6);
       } else {
-        // DAI/WETH has 18 decimals
+        // DAI has 18 decimals
         priceInWei = ethers.parseUnits(formData.price.toString(), 18);
       }
 
@@ -461,7 +461,7 @@ const ListProducts = () => {
       <div>
         <div className="navbar bg-base-100">
           <div className="flex-1">
-            <a className="btn btn-ghost text-xl">DeComm</a>
+            <a className="btn btn-ghost text-xl">Social</a>
           </div>
           <div className="flex-none">
             <ul className="menu menu-horizontal px-1">
@@ -566,7 +566,6 @@ const ListProducts = () => {
               <option value="" disabled>
                 Select Currency
               </option>
-              <option value={WETHAddress}>WETH</option>
               <option value={USDTAddress}>USDT</option>
               <option value={DAIAddress}>DAI</option>
             </select>

@@ -39,9 +39,9 @@ contract Commerce {
         address currency
     );
 
- address constant WETH_ADDRESS = 0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619; // WETH on Polygon
-    address constant USDT_ADDRESS = 0xc2132D05D31c914a87C6611C10748AEb04B58e8F; // USDT on Polygon
-    address constant DAI_ADDRESS = 0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063; // DAI on Polygon
+ 
+    address constant USDT_ADDRESS = 0x323e78f944A9a1FcF3a10efcC5319DBb0bB6e673; // USDT on Base
+    address constant DAI_ADDRESS = 0xE6F6e27c0BF1a4841E3F09d03D7D31Da8eAd0a27; // DAI on Base
 
     // Function to list a product
     function listProduct(

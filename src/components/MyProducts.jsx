@@ -3,7 +3,7 @@ import { useWeb3ModalProvider } from "@web3modal/ethers/react";
 import { BrowserProvider, Contract, ethers } from "ethers";
 import { Link } from "react-router-dom";
 
-const commerceContractAddress = "0xFfB4cab6E0aFC6D0aE99293a863D4a36d7152C7D";
+const commerceContractAddress = "0xF0c9C0fF44F2E5Cfd9259De2EDc49823e84555BD";
 const commerceABI = [
   {
     inputs: [
@@ -315,20 +315,18 @@ const commerceABI = [
 
 
 const currencyDetails = {
-  "0xc2132D05D31c914a87C6611C10748AEb04B58e8F": { name: "USDT", decimals: 6 },
-  "0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063": { name: "DAI", decimals: 18 },
-  "0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619": { name: "WETH", decimals: 18 },
+  "0x323e78f944A9a1FcF3a10efcC5319DBb0bB6e673": { name: "USDT", decimals: 6 },
+  "0xE6F6e27c0BF1a4841E3F09d03D7D31Da8eAd0a27": { name: "DAI", decimals: 18 },
 };
 
-const WETHAddress = "0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619";
-const USDTAddress = "0xc2132D05D31c914a87C6611C10748AEb04B58e8F";
-const DAIAddress = "0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063";
+
+const USDTAddress = "0x323e78f944A9a1FcF3a10efcC5319DBb0bB6e673";
+const DAIAddress = "0xE6F6e27c0BF1a4841E3F09d03D7D31Da8eAd0a27";
 
 
 const MyProducts = () => {
 
   const currencyMapping = {
-    [WETHAddress]: "WETH",
     [USDTAddress]: "USDT",
     [DAIAddress]: "DAI",
   };
@@ -376,7 +374,7 @@ const MyProducts = () => {
       <div>
         <div className="navbar bg-base-100">
           <div className="flex-1">
-            <a className="btn btn-ghost text-xl">DeComm</a>
+            <a className="btn btn-ghost text-xl">Social</a>
           </div>
           <div className="flex-none">
             <ul className="menu menu-horizontal px-1">
@@ -403,7 +401,7 @@ const MyProducts = () => {
               >
                 <img
                   className="w-full"
-                  src={product.image}
+                  src="https://bafybeidhzytaqzf7rbqwhzkg5sdc3suel7ehiknvm73bhskptz3kzrqqxi.ipfs.w3s.link/APPLE.png"
                   alt={product.name}
                 />
                 <div className="px-6 py-4">

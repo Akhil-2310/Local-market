@@ -8,7 +8,7 @@ import {
 import { BrowserProvider, Contract, ethers, parseUnits } from "ethers";
 import { useNavigate } from "react-router-dom";
 
-const commerceContractAddress = "0xFfB4cab6E0aFC6D0aE99293a863D4a36d7152C7D";
+const commerceContractAddress = "0xF0c9C0fF44F2E5Cfd9259De2EDc49823e84555BD";
 const commerceABI = [
   {
     inputs: [
@@ -338,16 +338,14 @@ const sepolia = {
   rpcUrl:
     "https://eth-sepolia.g.alchemy.com/v2/_O9yEvZei4_BPgQbLawL754cAfubB8jr", // Replace with your Infura project ID
 };
-
-const polygonPos = {
-  chainId: 137,
-  name: "Polygon (PoS)",
-  currency: "MATIC",
-  explorerUrl: "https://polygonscan.com",
+const basesepolia = {
+  chainId: 84532,
+  name: "BaseSepolia",
+  currency: "ETH",
+  explorerUrl: "https://base-sepolia.blockscout.com/",
   rpcUrl:
-    "https://polygon-mainnet.g.alchemy.com/v2/_O9yEvZei4_BPgQbLawL754cAfubB8jr", // You can replace this with an Alchemy, Infura, or another custom RPC URL
+    "https://base-sepolia.g.alchemy.com/v2/_O9yEvZei4_BPgQbLawL754cAfubB8jr", // Replace with your Infura project ID
 };
-
 
 // 3. Create a metadata object
 const metadata = {
@@ -378,19 +376,18 @@ const ethersConfig = defaultConfig({
 // 5. Create a AppKit instance
 createWeb3Modal({
   ethersConfig,
-  chains: [mainnet, sepolia, polygonPos],
+  chains: [mainnet, sepolia, basesepolia],
   projectId,
   enableAnalytics: true, // Optional - defaults to your Cloud configuration
 });
 
-const WETHAddress = "0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619";
-const USDTAddress = "0xc2132D05D31c914a87C6611C10748AEb04B58e8F";
-const DAIAddress = "0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063";
+
+const USDTAddress = "0x323e78f944A9a1FcF3a10efcC5319DBb0bB6e673";
+const DAIAddress = "0xE6F6e27c0BF1a4841E3F09d03D7D31Da8eAd0a27";
 
 const currencyDetails = {
-  "0xc2132D05D31c914a87C6611C10748AEb04B58e8F": { name: "USDT", decimals: 6 },
-  "0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063": { name: "DAI", decimals: 18 },
-  "0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619": { name: "WETH", decimals: 18 },
+  "0x323e78f944A9a1FcF3a10efcC5319DBb0bB6e673": { name: "USDT", decimals: 6 },
+  "0xE6F6e27c0BF1a4841E3F09d03D7D31Da8eAd0a27": { name: "DAI", decimals: 18 },
 };
 
 const ERC20ABI = [
@@ -401,7 +398,6 @@ const ERC20ABI = [
 
 
 const currencyMapping = {
-  [WETHAddress]: "WETH",
   [USDTAddress]: "USDT",
   [DAIAddress]: "DAI",
 };
@@ -465,30 +461,30 @@ const formatPrice = (price, curr) => {
     try {
          //Handle ERC20 purchase (USDT/DAI)
         let adjustedPrice;
-        if (currency === "0xc2132D05D31c914a87C6611C10748AEb04B58e8F") {
+        if (currency === "0x323e78f944A9a1FcF3a10efcC5319DBb0bB6e673") {
           // USDT (6 decimals)
           adjustedPrice = ethers.parseUnits(price.toString(), 6);
           const ERC20Contract = new Contract(currency, ERC20ABI, signer);
           const approveTx = await ERC20Contract.approve(
-          commerceContractAddress,
-          adjustedPrice
-        );
-        await approveTx.wait();
+            commerceContractAddress,
+            adjustedPrice
+          );
+          await approveTx.wait();
 
-        const purchaseTx = await commerceContract.purchaseProduct(id);
-        await purchaseTx.wait();
+          const purchaseTx = await commerceContract.purchaseProduct(id);
+          await purchaseTx.wait();
         } else {
           // DAI/WETH (18 decimals)
           adjustedPrice = ethers.parseUnits(price.toString(), 18);
           const ERC20Contract = new Contract(currency, ERC20ABI, signer);
-        const approveTx = await ERC20Contract.approve(
-          commerceContractAddress,
-          adjustedPrice
-        );
-        await approveTx.wait();
+          const approveTx = await ERC20Contract.approve(
+            commerceContractAddress,
+            adjustedPrice
+          );
+          await approveTx.wait();
 
-        const purchaseTx = await commerceContract.purchaseProduct(id);
-        await purchaseTx.wait();
+          const purchaseTx = await commerceContract.purchaseProduct(id);
+          await purchaseTx.wait();
         }        
       }
       catch(error){
@@ -503,7 +499,7 @@ const formatPrice = (price, curr) => {
       <div>
         <div className="navbar bg-base-100">
           <div className="flex-1">
-            <a className="btn btn-ghost text-xl">DeComm</a>
+            <a className="btn btn-ghost text-xl">Social</a>
           </div>
           <div className="flex-none">
             <ul className="menu menu-horizontal px-1">
